@@ -1,7 +1,9 @@
 {
     "successful_route_connection": "API is working!",
-    "id_is_required": "ID is required.",
     "query_is_required": "Query is required",
     "body_is_required": "Body is required.",
-    "object_not_found": "Object not found"
+    "object_not_found": "Object not found",
+    "id_is_required": "ID is required.",
+    "text_is_required": "The query 'text' is required.",
+    "text_not_is_string": "The query 'text' is not of type 'string'"
 }

@@ -3,5 +3,7 @@
     "id_is_required": "ID é obrigatório.",
     "query_is_required": "Query é obrigatória.",
     "body_is_required": "Body é obrigatório.",
-    "object_not_found": "Objeto não encontrado."
+    "object_not_found": "Objeto não encontrado.",
+    "text_is_required": "A query 'text' é obrigatório.",
+    "text_not_is_string": "A query 'text' não é do tipo 'string'"
 }

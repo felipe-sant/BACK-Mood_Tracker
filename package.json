@@ -23,6 +23,7 @@
   "homepage": "https://github.com/felipe-sant/template-express#readme",
   "description": "",
   "dependencies": {
+    "@gradio/client": "^1.15.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "i18next": "^25.3.2",
