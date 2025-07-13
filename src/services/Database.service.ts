@@ -6,7 +6,7 @@ import ResponsePredict from '../types/ResponsePredict';
 export class DatabaseService {
     /**
      * Função de salvamento de registro na tabela frases
-     * @param {string} text - Texto a ser salvo no banco de dados
+     * @param {string} text Texto a ser salvo no banco de dados
      * @description Salva um novo objeto na tabela frases
      */
     async saveText(text: string): Promise<void> {
@@ -19,6 +19,7 @@ export class DatabaseService {
      * @param {number} page Número da página do select.
      * @param {number} limit Limite de elementos por requisição.
      * @returns {ResponseGetManyText} Retorna um objeto com a página, número de linhas e dados.
+     * @description Retorna varios objetos da tabela frases do banco de dados, com base na página e no limite estipulado.
      */
     async getManyText(page: number, limit: number): Promise<ResponseGetManyText> {
         const offSet = (page * limit) - limit
@@ -35,16 +36,23 @@ export class DatabaseService {
 
     /**
      * Função para pegar um frase especifica.
-     * @param text 
-     * @returns 
+     * @param {string} text Texto a ser procurado no bd.
+     * @returns {DatabaseFrases} Retorna o objeto ultimo objeto registrado vindo do bd com o filtro do texto.
+     * @description Retorna um objeto da tabela frases com base no filtro de texto, retornando o ultimo registrado.
      */
-    async findText(text: string): Promise<DatabaseFrases | undefined> {
-        const query = `SELECT * FROM frases WHERE text='${text}' ORDER BY created_at DESC`
+    async findText(text: string, _id?: number): Promise<DatabaseFrases | undefined> {
+        let query = `SELECT * FROM frases WHERE text='${text}' ORDER BY created_at DESC`;
+        if (_id) { query = `SELECT * FROM frases WHERE _id='${_id}' ORDER BY created_at DESC`; }
         const res = (await client.query(query)).rows as Array<DatabaseFrases>
-        console.log(res)
         return res[0] as DatabaseFrases | undefined
     }
 
+    /**
+     * Função para setar o predict em uma frase especifica.
+     * @param {number} _id Identificador para buscar no bd. 
+     * @param {ResponsePredict} predict Predict que sera inserido no objeto.
+     * @description Atualiza uma frase colocando o novo predict.
+     */
     async setPredict(_id: number, predict: ResponsePredict): Promise<void> {
         const query = `UPDATE frases SET intention='${predict.intention}', intention_number=${predict.intentionNumber} WHERE _id=${_id}`
         await client.query(query)

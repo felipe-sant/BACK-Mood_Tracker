@@ -11,9 +11,9 @@ class AIController {
 
     /**
      * `GET | http://0.0.0.0:0000/api/ai/predict`
-     * @param req Possui parametros de Query (text)
-     * @returns Retorna qual humor mais provavel do texto
-     * @description Rota de predict de humor com base de IA
+     * @param req Possui parametros de Query (text).
+     * @returns Retorna qual humor mais provavel do texto.
+     * @description Rota de predict de humor com base de IA.
      */
     async predict(req: Request, res: Response): Promise<void> {
         try {

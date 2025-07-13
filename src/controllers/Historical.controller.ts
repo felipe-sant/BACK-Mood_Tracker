@@ -9,6 +9,12 @@ class HistoricalController {
         this.databaseService = new DatabaseService()
     }
 
+    /**
+     * `GET | http://0.0.0.0:0000/api/historical`
+     * @param req Possui parametros de Query (page)
+     * @returns Retorna o histórico de frases.
+     * @description Rota para pegar o histórico de frases, utilizando páginas que por padrão tem 10 elementos.
+     */
     async get(req: Request, res: Response): Promise<void> {
         try {
             const pageString = req.query.page
