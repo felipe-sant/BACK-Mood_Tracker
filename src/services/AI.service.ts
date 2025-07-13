@@ -1,5 +1,6 @@
 import { Client } from "@gradio/client"
-import PredictResponse from "../types/predictResponse"
+import ResponsePredict from "../types/ResponsePredict"
+import { DatabaseService } from "./Database.service"
 
 /* 
     Problemas com @radio/client em conjunto com o Jest
@@ -7,6 +8,11 @@ import PredictResponse from "../types/predictResponse"
 */
 export class AIService {
     private static project_url: string = "felipe-sant/mood-tracker"
+    private databaseService: DatabaseService
+
+    constructor() {
+        this.databaseService = new DatabaseService()
+    }
 
     /**
      * Função de conexão com a IA utilizando o `@gradio/client`
@@ -14,11 +20,13 @@ export class AIService {
      * @returns {PredictResponse} Retorna o humor da frase
      * @description Identifica o humor do texto enviado para a função.
      */
-    async predict(text: string): Promise<PredictResponse> {
+    async predict(text: string): Promise<ResponsePredict> {
         const client = await Client.connect(AIService.project_url)
         const res = (await client.predict("/predict", {
             texto: text
         })).data as Array<string>
+
+        this.databaseService.saveText(text)
         
         const predictText = res[0] as "positive" | "neutral" | "negative"
 
@@ -29,9 +37,9 @@ export class AIService {
             score = -1
         }
 
-        const predict: PredictResponse = {
-            text: predictText,
-            score: score
+        const predict: ResponsePredict = {
+            intention: predictText,
+            intentionNumber: score
         }
         
         return predict

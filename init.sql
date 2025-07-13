@@ -1,6 +1,6 @@
-CREATE TABLE usuarios (
-    id SERIAL PRIMARY KEY,
-    nome TEXT NOT NULL
+CREATE TABLE frases (
+    _id SERIAL PRIMARY KEY,
+    text TEXT NOT NULL,
+    intention TEXT CHECK (intention IN ('positive', 'neutral', 'negative')),
+    intentionNumber INTEGER CHECK (intentionNumber IN (-1, 0, 1))
 );
-
-INSERT INTO usuarios (nome) VALUES ('teste')
