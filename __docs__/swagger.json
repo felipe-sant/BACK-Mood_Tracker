@@ -1,11 +1,309 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Documentação da API",
+        "title": "Documentação API - Mood Tracker",
         "version": "1.0.0",
-        "description": "API construída com Express e Swagger"
+        "description": "Bem-vindo à documentação oficial da API do backend do projeto Mood Tracker, versão `1.0.0`. Esta API foi desenvolvida para fornecer os recursos necessários ao funcionamento do sistema Mood Tracker, responsável por registrar, classificar e analisar os sentimentos dos usuários com base em frases ou entradas textuais."
     },
-    "paths": {},
-    "components": {},
-    "tags": []
+    "servers": [],
+    "paths": {
+        "/api/ai/predict": {
+            "get": {
+                "summary": "Verificar humor",
+                "description": "Rota para verificar um humor de uma frase utilizando inteligência artificial.",
+                "tags": [
+                    "🤖 Inteligência Artificial"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "text",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Hoje é um bom dia."
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "intention": {
+                                            "type": "string",
+                                            "enum": [
+                                                "positive",
+                                                "neutral",
+                                                "negative"
+                                            ],
+                                            "example": "positive"
+                                        },
+                                        "intentionNumber": {
+                                            "type": "integer",
+                                            "enum": [
+                                                -1,
+                                                0,
+                                                1
+                                            ],
+                                            "example": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The query 'text' is required."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/ai": {
+            "get": {
+                "summary": "Teste de conectividade",
+                "description": "Rota para testar se as rotas `/ai` estão funcionando.",
+                "tags": [
+                    "🤖 Inteligência Artificial"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Rota funcionando!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/historical": {
+            "get": {
+                "summary": "Listar frases",
+                "description": "Rota para listar as frases ja analizadas, retornando elas por paginas de no maximo 10 elementos.",
+                "tags": [
+                    "📜 Histórico"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "page": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "rowsCount": {
+                                            "type": "number",
+                                            "example": 15
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "text": {
+                                                        "type": "string",
+                                                        "example": "Hoje é um bom dia."
+                                                    },
+                                                    "intention": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "positive",
+                                                            "neutral",
+                                                            "negative"
+                                                        ],
+                                                        "example": "positive"
+                                                    },
+                                                    "intentionNumber": {
+                                                        "type": "integer",
+                                                        "enum": [
+                                                            -1,
+                                                            0,
+                                                            1
+                                                        ],
+                                                        "example": 1
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-07-13T16:25:00-03:00"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-07-13T16:30:00-03:00"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The query 'page' is required."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Frase": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "text": {
+                        "type": "string",
+                        "example": "Hoje é um bom dia."
+                    },
+                    "intention": {
+                        "type": "string",
+                        "enum": [
+                            "positive",
+                            "neutral",
+                            "negative"
+                        ],
+                        "example": "positive"
+                    },
+                    "intentionNumber": {
+                        "type": "integer",
+                        "enum": [
+                            -1,
+                            0,
+                            1
+                        ],
+                        "example": 1
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T16:25:00-03:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-07-13T16:30:00-03:00"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "🤖 Inteligência Artificial"
+        },
+        {
+            "name": "📜 Histórico"
+        }
+    ]
 }

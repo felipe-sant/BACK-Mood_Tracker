@@ -6,7 +6,7 @@
     "start": "npx ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "buildDocs": "npx @redocly/cli build-docs __docs__/swagger.json -o __docs__/routes.html",
+    "build:docs": "npx @redocly/cli build-docs __docs__/swagger.json -o __docs__/routes.html",
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "up": "docker-compose up -d",
