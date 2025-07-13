@@ -14,11 +14,11 @@ app.use(express.json())
 app.use(requestLogger)
 app.use(i18nextMiddleware.handle(i18next))
 
-// app.get('/', (_, res) => { res.redirect('/docs/routes.html')})
-app.get("/", async (_, res) => {
-    const result = await client.query("SELECT NOW()");
-    res.send(result.rows[0]);
-});
+app.get('/', (_, res) => { res.redirect('/docs/routes.html')})
+// app.get("/", async (_, res) => {
+//     const result = await client.query("SELECT * FROM usuarios");
+//     res.send(result.rows[0]);
+// });
 app.use('/api', iaRoutes)
 app.use('/docs', express.static(path.join(__dirname, "../__docs__")))
 

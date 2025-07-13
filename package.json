@@ -4,11 +4,14 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "npx ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc",
+    "buildDocs": "npx @redocly/cli build-docs __docs__/swagger.json -o __docs__/routes.html",
     "test": "jest",
     "lint": "eslint . --ext .ts",
-    "buildDocs": "npx @redocly/cli build-docs __docs__/swagger.json -o __docs__/routes.html",
-    "dev": "nodemon src/index.ts"
+    "up": "docker-compose up -d",
+    "down": "docker-compose down -v",
+    "db:restart": "docker-compose down -v && docker-compose up -d"
   },
   "repository": {
     "type": "git",
