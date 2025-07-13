@@ -1,6 +1,8 @@
 import { Client } from "@gradio/client"
 import ResponsePredict from "../types/ResponsePredict"
 import { DatabaseService } from "./Database.service"
+import DatabaseFrases from "../types/DatabaseFrases"
+import { Request } from "express"
 
 /* 
     Problemas com @radio/client em conjunto com o Jest
@@ -41,6 +43,10 @@ export class AIService {
             intention: predictText,
             intentionNumber: score
         }
+
+        const frase = await this.databaseService.findText(text) as DatabaseFrases | undefined
+        if (!frase) throw new Error("'frase' not found")
+        this.databaseService.setPredict(frase._id, predict)
         
         return predict
     }

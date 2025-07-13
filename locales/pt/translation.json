@@ -5,5 +5,7 @@
     "body_is_required": "Body é obrigatório.",
     "object_not_found": "Objeto não encontrado.",
     "text_is_required": "A query 'text' é obrigatório.",
-    "text_not_is_string": "A query 'text' não é do tipo 'string'"
+    "text_not_is_string": "A query 'text' não é do tipo 'string'.",
+    "page_is_required": "A query 'page' é obrigatória.",
+    "page_not_is_number": "A query 'page' não é do tipo 'number'."
 }

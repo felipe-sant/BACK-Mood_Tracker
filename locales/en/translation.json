@@ -5,5 +5,7 @@
     "object_not_found": "Object not found",
     "id_is_required": "ID is required.",
     "text_is_required": "The query 'text' is required.",
-    "text_not_is_string": "The query 'text' is not of type 'string'"
+    "text_not_is_string": "The query 'text' is not of type 'string'",
+    "page_is_required": "The query 'page' is required.",
+    "page_not_is_number": "The query 'page' is not of type 'number'."
 }
