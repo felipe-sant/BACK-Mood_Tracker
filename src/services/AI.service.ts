@@ -22,13 +22,13 @@ export class AIService {
      * @description Identifica o humor do texto enviado para a função.
      */
     async predict(text: string): Promise<ResponsePredict> {
+        await this.databaseService.saveText(text)
+
         const client = await Client.connect(AIService.project_url)
         const res = (await client.predict("/predict", {
             texto: text
         })).data as Array<string>
 
-        this.databaseService.saveText(text)
-        
         const predictText = res[0] as "positive" | "neutral" | "negative"
 
         let score: -1 | 0 | 1 = 0
@@ -45,7 +45,8 @@ export class AIService {
 
         const frase = await this.databaseService.findText(text) as DatabaseFrases | undefined
         if (!frase) throw new Error("'frase' not found")
-        this.databaseService.setPredict(frase._id, predict)
+            
+        await this.databaseService.setPredict(frase._id, predict)
         
         return predict
     }

@@ -24,6 +24,7 @@ class AIController {
             }
             if (typeof text !== "string") {
                 res.status(400).json({ message: req.t("text_not_is_string") })
+                return
             }
 
             const result = await this.aiService.predict(text)
