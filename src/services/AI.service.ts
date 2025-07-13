@@ -16,9 +16,9 @@ export class AIService {
     }
 
     /**
-     * Função de conexão com a IA utilizando o `@gradio/client`
+     * Função de conexão com a IA utilizando o `@gradio/client`.
      * @param {string} text - Texto a ser identificado.
-     * @returns {PredictResponse} Retorna o humor da frase
+     * @returns {PredictResponse} Retorna o humor da frase.
      * @description Identifica o humor do texto enviado para a função.
      */
     async predict(text: string): Promise<ResponsePredict> {

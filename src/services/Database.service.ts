@@ -1,14 +1,27 @@
 import client from '../db'
 import DatabaseFrases from '../types/DatabaseFrases';
+import ResponseGetManyText from '../types/ResponseCreateObject';
 import ResponsePredict from '../types/ResponsePredict';
 
 export class DatabaseService {
+    /**
+     * Função de salvamento de registro na tabela frases
+     * @param {string} text - Texto a ser salvo no banco de dados
+     * @description Salva um novo objeto na tabela frases
+     */
     async saveText(text: string): Promise<void> {
         const query = `INSERT INTO frases (text) VALUES ('${text}')`
         await client.query(query)
     }
 
-    async getManyText(page: number, offSet: number, limit: number): Promise<{ page: number, rowsCount: number | null, data: Array<DatabaseFrases> }> {
+    /**
+     * Função para pegar grandes quantidades de frases.
+     * @param {number} page Número da página do select.
+     * @param {number} limit Limite de elementos por requisição.
+     * @returns {ResponseGetManyText} Retorna um objeto com a página, número de linhas e dados.
+     */
+    async getManyText(page: number, limit: number): Promise<ResponseGetManyText> {
+        const offSet = (page * limit) - limit
         const query = `SELECT * FROM frases ORDER BY created_at DESC LIMIT ${limit} OFFSET ${offSet}`
         const res = await client.query(query)
         const rows = res.rows as Array<DatabaseFrases>
@@ -20,9 +33,15 @@ export class DatabaseService {
         }
     }
 
+    /**
+     * Função para pegar um frase especifica.
+     * @param text 
+     * @returns 
+     */
     async findText(text: string): Promise<DatabaseFrases | undefined> {
-        const query = `SELECT * FROM frases WHERE text='${text}'`
+        const query = `SELECT * FROM frases WHERE text='${text}' ORDER BY created_at DESC`
         const res = (await client.query(query)).rows as Array<DatabaseFrases>
+        console.log(res)
         return res[0] as DatabaseFrases | undefined
     }
 

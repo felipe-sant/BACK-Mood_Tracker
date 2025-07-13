@@ -22,9 +22,8 @@ class HistoricalController {
                 return
             }
             const limit = 10
-            const offSet = (page * limit) - limit
             
-            const response = await this.databaseService.getManyText(page, offSet, limit)
+            const response = await this.databaseService.getManyText(page, limit)
 
             res.status(200).json(response)
         } catch (error: unknown) {
