@@ -9,7 +9,7 @@ export class DatabaseService {
     }
 
     async getManyText(page: number, offSet: number, limit: number): Promise<{ page: number, rowsCount: number | null, data: Array<DatabaseFrases> }> {
-        const query = `SELECT * FROM frases LIMIT ${limit} OFFSET ${offSet}`
+        const query = `SELECT * FROM frases ORDER BY created_at DESC LIMIT ${limit} OFFSET ${offSet}`
         const res = await client.query(query)
         const rows = res.rows as Array<DatabaseFrases>
         const rowsCount: number | null = res.rowCount
