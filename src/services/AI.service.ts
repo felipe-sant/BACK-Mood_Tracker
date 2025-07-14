@@ -2,10 +2,6 @@ import PredictResponse from "../types/PredictResponse"
 import { DatabaseService } from "./Database.service"
 import { HistoricalService } from "./Historical.service"
 
-/* 
-    Problemas com @radio/client em conjunto com o Jest
-    Testes unitarios não disponiveis. 
-*/
 export class AIService {
     private static clientPromise: ReturnType<typeof import("@gradio/client").Client.connect> | null = null;
     private static project_url: string = "felipe-sant/mood-tracker"
@@ -22,7 +18,7 @@ export class AIService {
      * @returns {PredictResponse} Retorna o humor da frase.
      * @description Identifica o humor do texto enviado para a função.
      */
-    async predict(text: string): Promise<PredictResponse> {
+    async predict(text: string, save: boolean = true): Promise<PredictResponse> {
         if (!AIService.clientPromise) {
             const { Client } = await import("@gradio/client");
             AIService.clientPromise = Client.connect(AIService.project_url);
@@ -48,7 +44,7 @@ export class AIService {
             intentionNumber: score
         }
 
-        this.historicalService.saveNewText(text, predict)
+        if (save) this.historicalService.saveNewText(text, predict)
         
         return predict
     }
