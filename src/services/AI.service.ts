@@ -1,4 +1,3 @@
-import { Client } from "@gradio/client"
 import ResponsePredict from "../types/ResponsePredict"
 import { DatabaseService } from "./Database.service"
 import DatabaseFrases from "../types/DatabaseFrases"
@@ -24,6 +23,8 @@ export class AIService {
     async predict(text: string): Promise<ResponsePredict> {
         await this.databaseService.saveText(text)
 
+        const { Client } = await import("@gradio/client");
+        
         const client = await Client.connect(AIService.project_url)
         const res = (await client.predict("/predict", {
             texto: text
