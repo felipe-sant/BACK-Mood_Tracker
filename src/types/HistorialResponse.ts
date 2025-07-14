@@ -1,9 +1,9 @@
 import DatabaseFrases from "./DatabaseFrases"
 
-type ResponseGetManyText = {
+type HistoricalResponse = {
     page: number,
     rowsCount: number | null,
     data: DatabaseFrases[]
 }
 
-export default ResponseGetManyText
+export default HistoricalResponse

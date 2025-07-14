@@ -1,6 +1,6 @@
 import client from '../db'
 import DatabaseFrases from '../types/DatabaseFrases';
-import ResponseGetManyText from '../types/ResponseCreateObject';
+import GetManyTextResponse from '../types/GetManyTextResponse';
 import ResponsePredict from '../types/ResponsePredict';
 
 export class DatabaseService {
@@ -16,19 +16,23 @@ export class DatabaseService {
 
     /**
      * Função para pegar grandes quantidades de frases.
-     * @param {number} page Número da página do select.
-     * @param {number} limit Limite de elementos por requisição.
-     * @returns {ResponseGetManyText} Retorna um objeto com a página, número de linhas e dados.
+     * @param {number} limit Número limite de objetos retornados
+     * @param {number} offSet Número de objetos pulados
+     * @returns {GetManyTextResponse} Retorna um objeto com a página, número de linhas e dados.
      * @description Retorna varios objetos da tabela frases do banco de dados, com base na página e no limite estipulado.
      */
-    async getManyText(page: number, limit: number): Promise<ResponseGetManyText> {
-        const offSet = (page * limit) - limit
-        const query = `SELECT * FROM frases ORDER BY created_at DESC LIMIT ${limit} OFFSET ${offSet}`
+    async getManyText(limit?: number, offSet?: number): Promise<GetManyTextResponse> {
+        let query = `SELECT * FROM frases ORDER BY created_at DESC`
+        if (limit) {
+            query += ` LIMIT ${limit}`
+            if (offSet) {
+                query += ` OFFSET ${offSet}`
+            }
+        }
         const res = await client.query(query)
         const rows = res.rows as Array<DatabaseFrases>
         const rowsCount: number | null = res.rowCount
         return {
-            page: page,
             rowsCount: rowsCount,
             data: rows
         }

@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { DatabaseService } from "../services/Database.service";
 import getErrorMessage from "../utils/getMessageError";
+import { HistoricalService } from "../services/Historical.service";
 
 class HistoricalController {
     private databaseService: DatabaseService
+    private historicalService: HistoricalService
 
     constructor() {
         this.databaseService = new DatabaseService()
+        this.historicalService = new HistoricalService()
     }
 
     /**
@@ -27,9 +30,9 @@ class HistoricalController {
                 res.status(400).json({ message: req.t("page_not_is_number") })
                 return
             }
-            const limit = 10
             
-            const response = await this.databaseService.getManyText(page, limit)
+            const response = await this.historicalService.getHistorical(page)
+            // const response = await this.databaseService.getManyText()
 
             res.status(200).json(response)
         } catch (error: unknown) {

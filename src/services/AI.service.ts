@@ -1,17 +1,19 @@
 import ResponsePredict from "../types/ResponsePredict"
 import { DatabaseService } from "./Database.service"
-import DatabaseFrases from "../types/DatabaseFrases"
+import { HistoricalService } from "./Historical.service"
 
 /* 
     Problemas com @radio/client em conjunto com o Jest
     Testes unitarios não disponiveis. 
 */
 export class AIService {
+    private static clientPromise: ReturnType<typeof import("@gradio/client").Client.connect> | null = null;
     private static project_url: string = "felipe-sant/mood-tracker"
-    private databaseService: DatabaseService
+
+    private historicalService: HistoricalService
 
     constructor() {
-        this.databaseService = new DatabaseService()
+        this.historicalService = new HistoricalService()
     }
 
     /**
@@ -21,11 +23,13 @@ export class AIService {
      * @description Identifica o humor do texto enviado para a função.
      */
     async predict(text: string): Promise<ResponsePredict> {
-        await this.databaseService.saveText(text)
+        if (!AIService.clientPromise) {
+            const { Client } = await import("@gradio/client");
+            AIService.clientPromise = Client.connect(AIService.project_url);
+        }
 
-        const { Client } = await import("@gradio/client");
-        
-        const client = await Client.connect(AIService.project_url)
+        const client = await AIService.clientPromise
+
         const res = (await client.predict("/predict", {
             texto: text
         })).data as Array<string>
@@ -44,10 +48,7 @@ export class AIService {
             intentionNumber: score
         }
 
-        const frase = await this.databaseService.findText(text) as DatabaseFrases | undefined
-        if (!frase) throw new Error("'frase' not found")
-            
-        await this.databaseService.setPredict(frase._id, predict)
+        this.historicalService.saveNewText(text, predict)
         
         return predict
     }
