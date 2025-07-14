@@ -1,8 +1,8 @@
-import DatabaseFrases from "./DatabaseFrases"
+import FrasesDatabase from "./database/FrasesDatabase"
 
 type GetManyTextResponse = {
     rowsCount: number | null,
-    data: DatabaseFrases[]
+    data: FrasesDatabase[]
 }
 
 export default GetManyTextResponse

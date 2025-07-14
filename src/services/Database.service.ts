@@ -1,7 +1,7 @@
 import client from '../db'
-import DatabaseFrases from '../types/DatabaseFrases';
+import FrasesDatabase from '../types/database/FrasesDatabase';
 import GetManyTextResponse from '../types/GetManyTextResponse';
-import ResponsePredict from '../types/ResponsePredict';
+import PredictResponse from '../types/PredictResponse';
 
 export class DatabaseService {
     /**
@@ -30,7 +30,7 @@ export class DatabaseService {
             }
         }
         const res = await client.query(query)
-        const rows = res.rows as Array<DatabaseFrases>
+        const rows = res.rows as Array<FrasesDatabase>
         const rowsCount: number | null = res.rowCount
         return {
             rowsCount: rowsCount,
@@ -41,23 +41,23 @@ export class DatabaseService {
     /**
      * Função para pegar um frase especifica.
      * @param {string} text Texto a ser procurado no bd.
-     * @returns {DatabaseFrases} Retorna o objeto ultimo objeto registrado vindo do bd com o filtro do texto.
+     * @returns {FrasesDatabase} Retorna o objeto ultimo objeto registrado vindo do bd com o filtro do texto.
      * @description Retorna um objeto da tabela frases com base no filtro de texto, retornando o ultimo registrado.
      */
-    async findText(text: string, _id?: number): Promise<DatabaseFrases | undefined> {
+    async findText(text: string, _id?: number): Promise<FrasesDatabase | undefined> {
         let query = `SELECT * FROM frases WHERE text='${text}' ORDER BY created_at DESC`;
         if (_id) { query = `SELECT * FROM frases WHERE _id='${_id}' ORDER BY created_at DESC`; }
-        const res = (await client.query(query)).rows as Array<DatabaseFrases>
-        return res[0] as DatabaseFrases | undefined
+        const res = (await client.query(query)).rows as Array<FrasesDatabase>
+        return res[0] as FrasesDatabase | undefined
     }
 
     /**
      * Função para setar o predict em uma frase especifica.
      * @param {number} _id Identificador para buscar no bd. 
-     * @param {ResponsePredict} predict Predict que sera inserido no objeto.
+     * @param {PredictResponse} predict Predict que sera inserido no objeto.
      * @description Atualiza uma frase colocando o novo predict.
      */
-    async setPredict(_id: number, predict: ResponsePredict): Promise<void> {
+    async setPredict(_id: number, predict: PredictResponse): Promise<void> {
         const query = `UPDATE frases SET intention='${predict.intention}', intention_number=${predict.intentionNumber} WHERE _id=${_id}`
         await client.query(query)
     }

@@ -1,9 +1,9 @@
-import DatabaseFrases from "./DatabaseFrases"
+import FrasesDatabase from "./database/FrasesDatabase"
 
 type HistoricalResponse = {
     page: number,
     rowsCount: number | null,
-    data: DatabaseFrases[]
+    data: FrasesDatabase[]
 }
 
 export default HistoricalResponse

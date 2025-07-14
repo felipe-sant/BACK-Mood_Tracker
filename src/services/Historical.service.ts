@@ -1,6 +1,6 @@
-import DatabaseFrases from "../types/DatabaseFrases"
+import FrasesDatabase from "../types/database/FrasesDatabase"
 import HistoricalResponse from "../types/HistorialResponse"
-import ResponsePredict from "../types/ResponsePredict"
+import PredictResponse from "../types/PredictResponse"
 import { DatabaseService } from "./Database.service"
 
 export class HistoricalService {
@@ -21,10 +21,10 @@ export class HistoricalService {
         }
     }
 
-    async saveNewText(text: string, predict: ResponsePredict): Promise<void> {
+    async saveNewText(text: string, predict: PredictResponse): Promise<void> {
         await this.databaseService.saveText(text)
         
-        const frase = await this.databaseService.findText(text) as DatabaseFrases | undefined
+        const frase = await this.databaseService.findText(text) as FrasesDatabase | undefined
         if (!frase) throw new Error("'frase' not found")
 
         await this.databaseService.setPredict(frase._id, predict)

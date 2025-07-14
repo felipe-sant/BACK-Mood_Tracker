@@ -1,4 +1,4 @@
-import ResponsePredict from "../types/ResponsePredict"
+import PredictResponse from "../types/PredictResponse"
 import { DatabaseService } from "./Database.service"
 import { HistoricalService } from "./Historical.service"
 
@@ -22,7 +22,7 @@ export class AIService {
      * @returns {PredictResponse} Retorna o humor da frase.
      * @description Identifica o humor do texto enviado para a função.
      */
-    async predict(text: string): Promise<ResponsePredict> {
+    async predict(text: string): Promise<PredictResponse> {
         if (!AIService.clientPromise) {
             const { Client } = await import("@gradio/client");
             AIService.clientPromise = Client.connect(AIService.project_url);
@@ -43,7 +43,7 @@ export class AIService {
             score = -1
         }
 
-        const predict: ResponsePredict = {
+        const predict: PredictResponse = {
             intention: predictText,
             intentionNumber: score
         }

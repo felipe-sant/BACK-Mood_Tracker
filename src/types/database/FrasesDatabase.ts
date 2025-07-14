@@ -1,4 +1,4 @@
-type DatabaseFrases = {
+type FrasesDatabase = {
     _id: number,
     text: string,
     intention: "positive" | "neutral" | "negative",
@@ -7,4 +7,4 @@ type DatabaseFrases = {
     updated_at: Date, // data com fuso
 }
 
-export default DatabaseFrases
+export default FrasesDatabase
