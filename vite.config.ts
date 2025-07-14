@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    include: ['__tests__/**/*.test.ts'], // ou ajuste para a pasta dos seus testes
+    include: ['__tests__/**/*.test.ts'],
+    setupFiles: ['.config/vite-setup.ts']
   },
 })

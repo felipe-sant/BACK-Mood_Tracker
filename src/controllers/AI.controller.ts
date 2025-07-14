@@ -27,7 +27,10 @@ class AIController {
                 return
             }
 
-            const result = await this.aiService.predict(text)
+            const saveString = req.query.save
+            const save = saveString === 'true' ? true : saveString === 'false' ? false : undefined
+
+            const result = await this.aiService.predict(text, save)
             res.status(200).json(result)
         } catch (error: unknown) {
             const errorMessage = getErrorMessage(error)

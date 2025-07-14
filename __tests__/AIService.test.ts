@@ -6,5 +6,5 @@ describe("Testando serviços de IA", () => {
     it("predict", async () => {
         const res = await aiService.predict("O serviço foi muito bom", false)
         expect(res.intention).toBe("positive")
-    })
+    }, 10000)
 })
