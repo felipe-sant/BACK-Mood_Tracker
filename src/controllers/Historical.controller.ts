@@ -32,7 +32,6 @@ class HistoricalController {
             }
             
             const response = await this.historicalService.getHistorical(page)
-            // const response = await this.databaseService.getManyText()
 
             res.status(200).json(response)
         } catch (error: unknown) {

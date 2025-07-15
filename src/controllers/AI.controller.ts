@@ -11,7 +11,7 @@ class AIController {
 
     /**
      * `GET | http://0.0.0.0:0000/api/ai/predict`
-     * @param req Possui parametros de Query (text).
+     * @param req Possui parametros de Query (text, save?).
      * @returns Retorna qual humor mais provavel do texto.
      * @description Rota de predict de humor com base de IA.
      */

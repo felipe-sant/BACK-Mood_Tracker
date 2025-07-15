@@ -23,6 +23,16 @@
                             "type": "string",
                             "example": "Hoje é um bom dia."
                         }
+                    },
+                    {
+                        "in": "query",
+                        "name": "save",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "example": true,
+                            "default": true
+                        }
                     }
                 ],
                 "responses": {
