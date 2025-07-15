@@ -41,7 +41,7 @@ export class AIService {
 
         const predict: PredictResponse = {
             intention: predictText,
-            intentionNumber: score
+            intention_number: score
         }
 
         if (save) this.historicalService.saveNewText(text, predict)

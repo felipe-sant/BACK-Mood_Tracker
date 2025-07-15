@@ -1,6 +1,6 @@
 import { AIService } from "../src/services/AI.service"
 
-describe("Testando serviços de IA", () => {
+describe("Testando serviços de AI", () => {
     const aiService = new AIService()
 
     it("predict", async () => {

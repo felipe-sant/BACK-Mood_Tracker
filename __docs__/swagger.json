@@ -42,7 +42,7 @@
                                             ],
                                             "example": "positive"
                                         },
-                                        "intentionNumber": {
+                                        "intention_number": {
                                             "type": "integer",
                                             "enum": [
                                                 -1,
@@ -190,7 +190,7 @@
                                                         ],
                                                         "example": "positive"
                                                     },
-                                                    "intentionNumber": {
+                                                    "intention_number": {
                                                         "type": "integer",
                                                         "enum": [
                                                             -1,
@@ -275,7 +275,7 @@
                         ],
                         "example": "positive"
                     },
-                    "intentionNumber": {
+                    "intention_number": {
                         "type": "integer",
                         "enum": [
                             -1,

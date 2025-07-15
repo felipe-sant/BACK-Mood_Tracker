@@ -46,7 +46,7 @@ export class DatabaseService {
      */
     async findText(text: string, _id?: number): Promise<FrasesDatabase | undefined> {
         let query = `SELECT * FROM frases WHERE text='${text}' ORDER BY created_at DESC`;
-        if (_id) { query = `SELECT * FROM frases WHERE _id='${_id}' ORDER BY created_at DESC`; }
+        if (_id) { query = `SELECT * FROM frases WHERE _id=${_id} ORDER BY created_at DESC`; }
         const res = (await client.query(query)).rows as Array<FrasesDatabase>
         return res[0] as FrasesDatabase | undefined
     }
@@ -58,7 +58,7 @@ export class DatabaseService {
      * @description Atualiza uma frase colocando o novo predict.
      */
     async setPredict(_id: number, predict: PredictResponse): Promise<void> {
-        const query = `UPDATE frases SET intention='${predict.intention}', intention_number=${predict.intentionNumber} WHERE _id=${_id}`
+        const query = `UPDATE frases SET intention='${predict.intention}', intention_number=${predict.intention_number} WHERE _id=${_id}`
         await client.query(query)
     }
 }
