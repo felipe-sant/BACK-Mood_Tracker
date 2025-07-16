@@ -1,5 +1,4 @@
 import PredictResponse from "../types/PredictResponse"
-import { DatabaseService } from "./Database.service"
 import { HistoricalService } from "./Historical.service"
 
 export class AIService {

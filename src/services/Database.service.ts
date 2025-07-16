@@ -18,7 +18,7 @@ export class DatabaseService {
      * Função para pegar grandes quantidades de frases.
      * @param {number} limit Número limite de objetos retornados
      * @param {number} offSet Número de objetos pulados
-     * @returns {GetManyTextResponse} Retorna um objeto com a página, número de linhas e dados.
+     * @returns {GetManyTextResponse} Retorna um objeto com a número de linhas e dados.
      * @description Retorna varios objetos da tabela frases do banco de dados, com base na página e no limite estipulado.
      */
     async getManyText(limit?: number, offSet?: number): Promise<GetManyTextResponse> {

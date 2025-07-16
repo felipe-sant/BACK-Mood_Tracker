@@ -1,14 +1,11 @@
 import { Request, Response } from "express";
-import { DatabaseService } from "../services/Database.service";
 import getErrorMessage from "../utils/getMessageError";
 import { HistoricalService } from "../services/Historical.service";
 
 class HistoricalController {
-    private databaseService: DatabaseService
     private historicalService: HistoricalService
 
     constructor() {
-        this.databaseService = new DatabaseService()
         this.historicalService = new HistoricalService()
     }
 

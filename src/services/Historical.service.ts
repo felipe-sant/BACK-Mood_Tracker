@@ -10,6 +10,12 @@ export class HistoricalService {
         this.databaseService = new DatabaseService()
     }
 
+    /**
+     * Função para pegar o histórico dos textos.
+     * @param {number} page Página dos dados.
+     * @returns {HistoricalResponse} Retorna um objeto com a página, numero de linhas e dados.
+     * @description Retorna o histórico de textos com base na página escolhida
+     */
     async getHistorical(page: number): Promise<HistoricalResponse> {
         const limit = 10
         const offSet = (page * limit) - limit
@@ -21,6 +27,12 @@ export class HistoricalService {
         }
     }
 
+    /**
+     * Função que salva um objeto frase no banco de dados
+     * @param {string} text Texto a ser salvo no histórico.
+     * @param {PredictResponse} predict Intenção a ser colocada na frase.
+     * @description Salva um novo histórico de texto com predict imbutido.
+     */
     async saveNewText(text: string, predict: PredictResponse): Promise<void> {
         await this.databaseService.saveText(text)
         
