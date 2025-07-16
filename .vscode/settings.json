@@ -11,7 +11,7 @@
         "LICENSE": true,
         "vite.config.ts": true,
         "vercel.json": true,
-        ".github": false,
+        ".github": true,
         ".gitattributes": true,
         "eslint.config.mjs": true,
         ".env.example": true,
