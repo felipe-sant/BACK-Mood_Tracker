@@ -1,7 +1,8 @@
 {
-  "name": "template-express",
+  "name": "back-mood_tracker",
   "version": "1.0.0",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
     "start": "npx ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
@@ -15,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/felipe-sant/template-express.git"
+    "url": "git+https://github.com/felipe-sant/back-mood_tracker.git"
   },
   "keywords": [],
   "author": "",
