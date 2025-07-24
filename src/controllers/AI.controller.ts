@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import getErrorMessage from '../utils/getMessageError'
-import { AIService } from '../services/AI.service'
+import getErrorMessage from '../utils/getMessageError.js'
+import { AIService } from '../services/AI.service.js'
 
 class AIController {
     private aiService: AIService

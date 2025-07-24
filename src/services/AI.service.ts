@@ -1,8 +1,8 @@
-import PredictResponse from "../types/PredictResponse"
-import { HistoricalService } from "./Historical.service"
+import PredictResponse from "../types/PredictResponse.js"
+import { HistoricalService } from "./Historical.service.js"
 
 export class AIService {
-    private static clientPromise: ReturnType<typeof import("@gradio/client").Client.connect> | null = null;
+    private static clientPromise: Promise<import("@gradio/client").Client> | null = null;
     private static project_url: string = "felipe-sant/mood-tracker"
 
     private historicalService: HistoricalService

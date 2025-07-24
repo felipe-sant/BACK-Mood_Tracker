@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import getErrorMessage from "../utils/getMessageError";
-import { HistoricalService } from "../services/Historical.service";
+import getErrorMessage from "../utils/getMessageError.js";
+import { HistoricalService } from "../services/Historical.service.js";
 
 class HistoricalController {
     private historicalService: HistoricalService

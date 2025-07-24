@@ -1,7 +1,7 @@
-import { DatabaseService } from "../src/services/Database.service"
-import FrasesDatabase from "../src/types/database/FrasesDatabase"
-import GetManyTextResponse from "../src/types/GetManyTextResponse"
-import PredictResponse from "../src/types/PredictResponse"
+import { DatabaseService } from "../src/services/Database.service.js"
+import FrasesDatabase from "../src/types/database/FrasesDatabase.js"
+import GetManyTextResponse from "../src/types/GetManyTextResponse.js"
+import PredictResponse from "../src/types/PredictResponse.js"
 
 describe("Testando serviços de Database", () => {
     const databaseService = new DatabaseService()

@@ -1,7 +1,7 @@
-import client from '../db'
-import FrasesDatabase from '../types/database/FrasesDatabase';
-import GetManyTextResponse from '../types/GetManyTextResponse';
-import PredictResponse from '../types/PredictResponse';
+import client from '../db.js'
+import FrasesDatabase from '../types/database/FrasesDatabase.js';
+import GetManyTextResponse from '../types/GetManyTextResponse.js';
+import PredictResponse from '../types/PredictResponse.js';
 
 export class DatabaseService {
     /**

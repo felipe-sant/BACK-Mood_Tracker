@@ -1,4 +1,4 @@
-import FrasesDatabase from "./database/FrasesDatabase"
+import FrasesDatabase from "./database/FrasesDatabase.js"
 
 type HistoricalResponse = {
     page: number,

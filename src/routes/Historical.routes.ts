@@ -1,5 +1,5 @@
 import { Router } from "express";
-import HistoricalController from "../controllers/Historical.controller";
+import HistoricalController from "../controllers/Historical.controller.js";
 
 const router = Router()
 const historicalController = new HistoricalController()

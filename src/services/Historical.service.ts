@@ -1,7 +1,7 @@
-import FrasesDatabase from "../types/database/FrasesDatabase"
-import HistoricalResponse from "../types/HistorialResponse"
-import PredictResponse from "../types/PredictResponse"
-import { DatabaseService } from "./Database.service"
+import FrasesDatabase from "../types/database/FrasesDatabase.js"
+import HistoricalResponse from "../types/HistorialResponse.js"
+import PredictResponse from "../types/PredictResponse.js"
+import { DatabaseService } from "./Database.service.js"
 
 export class HistoricalService {
     private databaseService: DatabaseService

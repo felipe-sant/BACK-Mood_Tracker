@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import AIController from '../controllers/AI.controller'
+import AIController from '../controllers/AI.controller.js'
 
 const router = Router()
 const aiController = new AIController()

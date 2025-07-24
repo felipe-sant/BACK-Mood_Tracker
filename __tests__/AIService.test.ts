@@ -1,4 +1,4 @@
-import { AIService } from "../src/services/AI.service"
+import { AIService } from "../src/services/AI.service.js"
 
 describe("Testando serviços de AI", () => {
     const aiService = new AIService()

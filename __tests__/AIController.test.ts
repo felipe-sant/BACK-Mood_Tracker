@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../src/app'
+import app from '../src/app.js'
 
 describe("Testando rotas http://0.0.0.0:0000/api/ai", () => {
     it("GET '/'", async () => {
