@@ -44,9 +44,17 @@ class AIController {
      */
     async __test__(req: Request, res: Response): Promise<void> {
         try {
-            res.status(200).json({
-                message: req.t("successful_route_connection")
-            })
+            const predict = await this.aiService.predict("O serviço foi muito bom", false)
+            if (predict.intention === "positive") {
+                res.status(200).json({
+                    message: req.t("successful_route_connection")
+                })
+                return
+            } else {
+                res.status(500).json({
+                    message: req.t("failed_route_connection")
+                })
+            }
         } catch (error: unknown) {
             const errorMessage = getErrorMessage(error)
             res.status(500).json({ message: errorMessage })

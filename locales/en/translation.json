@@ -1,5 +1,6 @@
 {
     "successful_route_connection": "API is working!",
+    "failed_route_connection": "API is working!",
     "query_is_required": "Query is required",
     "body_is_required": "Body is required.",
     "object_not_found": "Object not found",

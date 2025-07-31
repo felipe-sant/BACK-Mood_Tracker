@@ -1,5 +1,6 @@
 {
     "successful_route_connection": "A API está funcionando!",
+    "failed_route_connection": "A API não está funcionando!",
     "id_is_required": "ID é obrigatório.",
     "query_is_required": "Query é obrigatória.",
     "body_is_required": "Body é obrigatório.",
