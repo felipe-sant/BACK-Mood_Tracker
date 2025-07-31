@@ -25,7 +25,15 @@ Este projeto integra um modelo de NLP (Processamento de Linguagem Natural), atua
    npm install
    ```
 
-2. Execute a aplicação:
+2. Configure as variaveis de ambiente:
+
+   - Tire o .example do arquivo `.env`, caso queria utilizar um banco de dados diferente, mude o DATABASE_URL para chave do seu banco.
+
+3. Execute os testes unitarios:
+
+   - Para ver se esta tudo bem configurado, execute o comando `npm test` para executar os testes unitarios.
+
+4. Execute a aplicação:
     ```node
     npm start
     ```
